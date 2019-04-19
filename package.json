@@ -4,7 +4,7 @@
   "description": "Node-RED node for image-segmenter",
   "main": "node.js",
   "scripts": {
-    "test": "mocha \"test/**/*_spec.js\""
+    "test": "mocha \"test/**/*_spec.js\" --timeout 30000"
   },
   "node-red": {
     "nodes": {
@@ -14,6 +14,9 @@
   "keywords": [
     "node-red-nodegen"
   ],
+  "dependencies": {
+    "@codait/max-image-segmenter": "0.1.4"
+  },
   "devDependencies": {
     "node-red": "0.18.7",
     "node-red-node-test-helper": "0.1.8"

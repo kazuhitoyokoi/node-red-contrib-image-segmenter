@@ -1,5 +1,6 @@
 var should = require("should");
 var helper = require("node-red-node-test-helper");
+var request = require('request');
 var node = require("../node.js");
 
 helper.init(require.resolve('node-red'));
@@ -36,10 +37,12 @@ describe('image-segmenter node', function () {
             var n2 = helper.getNode("n2");
             var n1 = helper.getNode("n1");
             n2.on("input", function (msg) {
-                msg.should.have.property('payload', '<output message>'); // (2) define output message
+                msg.should.have.property('payload', ["background","potted plant","person"]); // (2) define output message
                 done();
             });
-            n1.receive({ payload: "<input message>" }); // (1) define input message
+            request('https://raw.githubusercontent.com/IBM/MAX-Image-Segmenter/master/assets/stc.jpg', { encoding: null }, function (error, response, body) {
+                n1.receive({ payload: Buffer.from(body) }); // (1) define input message
+            });
         });
     });
 });

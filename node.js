@@ -203,6 +203,7 @@ module.exports = function(RED) {
                 });
             }
         }
+        sandbox.global.set("imageSegmenter", require('@codait/max-image-segmenter'));
         var context = vm.createContext(sandbox);
         try {
             this.script = vm.createScript(functionText, {
